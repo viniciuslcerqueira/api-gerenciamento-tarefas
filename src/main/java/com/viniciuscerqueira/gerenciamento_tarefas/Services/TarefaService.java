@@ -24,6 +24,7 @@ public class TarefaService {
         return tarefaRepository.findAll();
     }
 
+
     public void deletarTarefa(Integer id){
         if(!tarefaRepository.existsById(id)){
             throw new RuntimeException("Tarefa não encontrada");
