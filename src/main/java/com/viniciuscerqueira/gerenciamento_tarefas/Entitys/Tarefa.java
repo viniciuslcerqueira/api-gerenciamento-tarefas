@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@AllArgsConstructor
+@Table(name = "table_tarefa")
 public class Tarefa {
 
 
@@ -28,4 +28,10 @@ public class Tarefa {
     @ManyToOne
     private Usuario responsavel;
 
+
+    public Tarefa(String descricao, LocalDate dataRealizacao, Usuario responsavel) {
+        this.descricao = descricao;
+        this.dataRealizacao = dataRealizacao;
+        this.responsavel = responsavel;
+    }
 }
