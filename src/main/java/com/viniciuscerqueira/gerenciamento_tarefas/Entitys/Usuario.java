@@ -11,7 +11,6 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "table_usuarios")
 public class Usuario {
@@ -31,4 +30,8 @@ public class Usuario {
     @OneToMany
     private List<Tarefa> tarefas;
 
+    public Usuario(String username, String senha) {
+        this.username = username;
+        this.senha = senha;
+    }
 }
