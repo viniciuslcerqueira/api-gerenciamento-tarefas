@@ -19,14 +19,18 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-
     public List<Usuario> listarUsuarios(){
         return usuarioRepository.findAll();
     }
 
     public Usuario buscarPorId(Integer id){
-        validarExistenciaUsuario(id);
         return  usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+    }
+
+    public Usuario buscarPorUsername(String username){
+        return usuarioRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
     }
@@ -38,6 +42,7 @@ public class UsuarioService {
     }
 
     public Usuario atualizarUsuario(Integer id, Usuario dadosAtualizados){
+        validarExistenciaUsuario(id);
         Usuario usuarioExistente = buscarPorId(id);
         usuarioExistente.setUsername(dadosAtualizados.getUsername());
         usuarioExistente.setSenha((dadosAtualizados.getSenha()));
@@ -57,15 +62,5 @@ public class UsuarioService {
             throw new RuntimeException("Usuário não encontrado");
         }
     }
-
-
-
-
-
-
-
-
-
-
 
 }
