@@ -37,12 +37,19 @@ public class UsuarioController{
         return ResponseEntity.ok(usuario);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/buscar")
     public ResponseEntity<Usuario> buscarUsuarioPorUsername(String username){
         Usuario usuario = usuarioService.buscarPorUsername(username);
         return ResponseEntity.ok(usuario);
 
         }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuarioAtualizado ){
+        Usuario atualizado = usuarioService.atualizarUsuario(id, usuarioAtualizado);
+        return ResponseEntity.ok(usuarioAtualizado);
+    }
     }
 
 
