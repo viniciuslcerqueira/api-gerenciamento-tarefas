@@ -20,6 +20,11 @@ public class TarefaService {
         return tarefaRepository.save(tarefa);
     }
 
+    public Tarefa buscarTarefaPorId(Integer id){
+        return tarefaRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+    }
+
     public List<Tarefa> listarTarefas(){
         return tarefaRepository.findAll();
     }
